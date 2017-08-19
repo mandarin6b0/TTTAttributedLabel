@@ -70,6 +70,12 @@ extern NSString * const kTTTBackgroundLineWidthAttributeName;
  */
 extern NSString * const kTTTBackgroundCornerRadiusAttributeName;
 
+/**
+ Usage of custom link attributes. Default values is @NO
+ */
+extern NSString * const kTTTCustomLinkAttributeName;
+
+
 @protocol TTTAttributedLabelDelegate;
 
 // Override UILabel @property to accept both NSString and NSAttributedString

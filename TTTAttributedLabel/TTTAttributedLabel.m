@@ -37,6 +37,8 @@ NSString * const kTTTBackgroundStrokeColorAttributeName = @"TTTBackgroundStrokeC
 NSString * const kTTTBackgroundLineWidthAttributeName = @"TTTBackgroundLineWidth";
 NSString * const kTTTBackgroundCornerRadiusAttributeName = @"TTTBackgroundCornerRadius";
 
+NSString * const kTTTCustomLinkAttributeName = @"TTTCustromLinkAttribute";
+
 const NSTextAlignment TTTTextAlignmentLeft = NSTextAlignmentLeft;
 const NSTextAlignment TTTTextAlignmentCenter = NSTextAlignmentCenter;
 const NSTextAlignment TTTTextAlignmentRight = NSTextAlignmentRight;
@@ -570,11 +572,18 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 {
     NSMutableArray *links = [NSMutableArray array];
     
+    NSAttributedString *attributedString = self.attributedText;
+    
     for (NSTextCheckingResult *result in results) {
         NSDictionary *activeAttributes = attributes ? self.activeLinkAttributes : nil;
         NSDictionary *inactiveAttributes = attributes ? self.inactiveLinkAttributes : nil;
         
-        TTTAttributedLabelLink *link = [[TTTAttributedLabelLink alloc] initWithAttributes:attributes
+        NSDictionary *currentAttributes = [attributedString
+                                           attributesAtIndex:result.range.location
+                                           effectiveRange:nil];
+        BOOL usesCustomLink = [currentAttributes[kTTTCustomLinkAttributeName] isEqual:@YES];
+        
+        TTTAttributedLabelLink *link = [[TTTAttributedLabelLink alloc] initWithAttributes:usesCustomLink ? nil : attributes
                                                                          activeAttributes:activeAttributes
                                                                        inactiveAttributes:inactiveAttributes
                                                                        textCheckingResult:result];
