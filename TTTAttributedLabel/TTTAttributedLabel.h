@@ -668,7 +668,7 @@ typedef void (^TTTAttributedLabelLinkBlock) (TTTAttributedLabel *, TTTAttributed
  
  @return The initialized link object.
  */
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
+- (nonnull instancetype)initWithAttributes:(NSDictionary *)attributes
                   activeAttributes:(NSDictionary *)activeAttributes
                 inactiveAttributes:(NSDictionary *)inactiveAttributes
                 textCheckingResult:(NSTextCheckingResult *)result;
@@ -681,7 +681,7 @@ typedef void (^TTTAttributedLabelLinkBlock) (TTTAttributedLabel *, TTTAttributed
  
  @return The initialized link object.
  */
-- (instancetype)initWithAttributesFromLabel:(TTTAttributedLabel*)label
+- (nonnull instancetype)initWithAttributesFromLabel:(TTTAttributedLabel*)label
                          textCheckingResult:(NSTextCheckingResult *)result;
 
 @end
